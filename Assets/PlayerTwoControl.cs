@@ -29,7 +29,7 @@ public class PlayerTwoControl : MonoBehaviour {
 			rb2d.AddRelativeForce (Vector2.right* 10);
 		}
 		if (Input.GetKeyDown("down")) {
-			rb2d.velocity = Vector2.zero;
+			rb2d.velocity = new Vector2(rb2d.velocity.x/3,rb2d.velocity.y/3);
 		}
 	}
 }
