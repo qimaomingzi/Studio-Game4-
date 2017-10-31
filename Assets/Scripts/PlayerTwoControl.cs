@@ -16,16 +16,18 @@ public class PlayerTwoControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
+		float speed;
 		float turn = Input.GetAxis("Horizontal");
 		if (rb2d.angularVelocity < 1000 && turn < 0) {
 			rb2d.AddTorque (-torque * turn);
 		} else if (rb2d.angularVelocity > -1000 && turn > 0) {
 			rb2d.AddTorque (-torque * turn);
 		}
-
+		speed = Mathf.Sqrt (rb2d.velocity.x * rb2d.velocity.x + rb2d.velocity.y * rb2d.velocity.y);
 		if (Input.GetAxis("Vertical")> 0 && Mathf.Sqrt(rb2d.velocity.x*rb2d.velocity.x + rb2d.velocity.y *rb2d.velocity.y)<=20) {
 			rb2d.angularVelocity = 0;
 			rb2d.AddRelativeForce (Vector2.right* 10);
+			rb2d.velocity = new Vector2 (Mathf.Min (rb2d.velocity.x / speed * 20, 15), Mathf.Min (rb2d.velocity.y / speed * 20, 15));
 		}
 		if (Input.GetKeyDown("down")) {
 			rb2d.velocity = new Vector2(rb2d.velocity.x/2,rb2d.velocity.y/2);
