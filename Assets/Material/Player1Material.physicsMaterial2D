@@ -6,5 +6,5 @@ PhysicsMaterial2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Player1Material
-  friction: 0
-  bounciness: 1.01
+  friction: 1
+  bounciness: 1.5

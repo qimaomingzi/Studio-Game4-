@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 628998628}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,8 +235,8 @@ BoxCollider2D:
   m_GameObject: {fileID: 628998626}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: fb44f52a588574e9782b99c719971768, type: 2}
-  m_IsTrigger: 1
+  m_Material: {fileID: 6200000, guid: 2112f3baa2516413892c306c486b5d0c, type: 2}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 1263031651}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -579,8 +579,8 @@ BoxCollider2D:
   m_GameObject: {fileID: 1263031649}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: fb44f52a588574e9782b99c719971768, type: 2}
-  m_IsTrigger: 1
+  m_Material: {fileID: 6200000, guid: 2112f3baa2516413892c306c486b5d0c, type: 2}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -783,7 +783,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 9b4c6215fb9d7444081340fd9cffe870, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 2029441924}
   m_Layer: 0
   m_Name: right
-  m_TagString: Player1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -872,7 +872,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 0
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -960,7 +960,7 @@ GameObject:
   - component: {fileID: 2090107305}
   m_Layer: 0
   m_Name: left
-  m_TagString: Player1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -987,7 +987,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

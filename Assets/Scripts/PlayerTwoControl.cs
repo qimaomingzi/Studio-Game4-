@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerTwoControl : MonoBehaviour {
 	Rigidbody2D rb2d;
 	public float torque;
+	public float MaxSpeed;
 	float ForceX;
 	float ForceY;
 	const float AngelToRadian= 180/Mathf.PI;
@@ -24,13 +25,16 @@ public class PlayerTwoControl : MonoBehaviour {
 			rb2d.AddTorque (-torque * turn);
 		}
 		speed = Mathf.Sqrt (rb2d.velocity.x * rb2d.velocity.x + rb2d.velocity.y * rb2d.velocity.y);
-		if (Input.GetAxis("Vertical")> 0 && Mathf.Sqrt(rb2d.velocity.x*rb2d.velocity.x + rb2d.velocity.y *rb2d.velocity.y)<=20) {
+		if (Input.GetAxis("Vertical")> 0) {
 			rb2d.angularVelocity = 0;
 			rb2d.AddRelativeForce (Vector2.right* 10);
-			rb2d.velocity = new Vector2 (Mathf.Min (rb2d.velocity.x / speed * 20, 15), Mathf.Min (rb2d.velocity.y / speed * 20, 15));
+
 		}
 		if (Input.GetKeyDown("down")) {
 			rb2d.velocity = new Vector2(rb2d.velocity.x/2,rb2d.velocity.y/2);
+		}
+		if (speed > MaxSpeed) {
+			rb2d.velocity = new Vector2 (rb2d.velocity.x / speed * MaxSpeed, rb2d.velocity.y / speed * MaxSpeed);
 		}
 	}
 }
