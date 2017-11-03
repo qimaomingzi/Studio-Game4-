@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerOneControl : MonoBehaviour {
 	Rigidbody2D[] rb;
 	SpriteRenderer[] sr;
-	GameObject P2;
 	public float MaxSpeed;
 	bool isLeft = true;
 
@@ -14,7 +13,6 @@ public class PlayerOneControl : MonoBehaviour {
 		rb = GetComponentsInChildren<Rigidbody2D> ();
 		sr = GetComponentsInChildren<SpriteRenderer> ();
 		sr [1].color = Color.gray;
-		P2 = GameObject.Find ("Player2");
 	}
 	
 	// Update is called once per frame

@@ -10,20 +10,24 @@ public class PlayerTwoControl : MonoBehaviour {
 	float SkillTime = 0;
 	float SkillTime2 = 0;
 	float Cooldown = 5;
+	float Cooldown2 = 3;
 	bool BulletTime = false;
 	bool Shake = false;
+	Vector3 CurrentPosition = Vector3.zero;
 	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D> ();
+		CurrentPosition = transform.position;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		float speed;
 		float turn = Input.GetAxis("Horizontal");
-		if (rb2d.angularVelocity < 1000 && turn < 0) {
+		CurrentPosition = transform.position;
+		if (rb2d.angularVelocity < 1500 && turn < 0) {
 			rb2d.AddTorque (-torque * turn);
-		} else if (rb2d.angularVelocity > -1000 && turn > 0) {
+		} else if (rb2d.angularVelocity > -1500 && turn > 0) {
 			rb2d.AddTorque (-torque * turn);
 		}
 		speed = Mathf.Sqrt (rb2d.velocity.x * rb2d.velocity.x + rb2d.velocity.y * rb2d.velocity.y);
@@ -38,6 +42,8 @@ public class PlayerTwoControl : MonoBehaviour {
 		if (speed > MaxSpeed) {
 			rb2d.velocity = new Vector2 (rb2d.velocity.x / speed * MaxSpeed, rb2d.velocity.y / speed * MaxSpeed);
 		}
+
+		//First Skill Bullet time
 		if (Input.GetButtonDown ("P2Skill1") && Cooldown == 5) {
 			BulletTime = true;
 			SkillTime = 0;
@@ -57,19 +63,24 @@ public class PlayerTwoControl : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetButtonDown ("P2Skill2") && Cooldown == 5) {
+		//Second Skill Shake ball
+		if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
+			Debug.Log ("in");
 			Shake = true;
 			SkillTime2 = 0;
 		}
 		if (Shake) {
-			transform.position = new Vector3(transform.position.x+Random.value/5-0.1f,transform.position.y+Random.value/5-0.1f,0);
+			Debug.Log ("running");
+			transform.position = new Vector3(CurrentPosition.x+Random.value-0.5f,CurrentPosition.y+Random.value-0.5f,0);
 			SkillTime2 += Time.deltaTime;
 			if (SkillTime2 >= 1) {
 				Shake = false;
+				Cooldown2 = 0;
 			}
 		}
 
 		Cooldown = Mathf.Min (5, Cooldown += Time.deltaTime);
+		Cooldown2 = Mathf.Min (3, Cooldown2 += Time.deltaTime);
 	}
 
 }
