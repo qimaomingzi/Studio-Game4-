@@ -2,31 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTwoControl : MonoBehaviour {
+public class ShadowControl : MonoBehaviour {
 	Rigidbody2D rb2d;
 	public float torque;
 	public float MaxSpeed;
 	int STR = 100;
 	float SkillTime = 0;
-	float SkillTime2 = 0;
 	float Cooldown = 5;
-	float Cooldown2 = 3;
 	bool BulletTime = false;
-	bool Shake = false;
-	GameObject shadow;
-	Vector3 CurrentPosition = Vector3.zero;
 	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D> ();
-		CurrentPosition = transform.position;
-		shadow = GameObject.Find ("Player2Shadow");
 	}
 
 	// Update is called once per frame
 	void Update () {
 		float speed;
 		float turn = Input.GetAxis("Horizontal");
-		CurrentPosition = transform.position;
 		if (rb2d.angularVelocity < 1500 && turn < 0) {
 			rb2d.AddTorque (-torque * turn);
 		} else if (rb2d.angularVelocity > -1500 && turn > 0) {
@@ -65,29 +57,8 @@ public class PlayerTwoControl : MonoBehaviour {
 			}
 		}
 
-		//Second Skill Shake ball
-		if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
-			Debug.Log ("in");
-			Shake = true;
-			SkillTime2 = 0;
-			shadow = this.gameObject;
-		}
-		if (Shake) {
-			Debug.Log ("running");
-			transform.position = new Vector3(shadow.transform.position.x+Random.value-0.5f,shadow.transform.position.y+Random.value-0.5f,0);
-
-			SkillTime2 += Time.deltaTime;
-			if (SkillTime2 >= 1) {
-				Shake = false;
-				Cooldown2 = 0;
-				this.transform.position = shadow.transform.position;
-				this.transform.localRotation = shadow.transform.localRotation;
-				this.rb2d = shadow.GetComponent<Rigidbody2D> ();
-			}
-		}
 
 		Cooldown = Mathf.Min (5, Cooldown += Time.deltaTime);
-		Cooldown2 = Mathf.Min (3, Cooldown2 += Time.deltaTime);
 	}
 
 }
