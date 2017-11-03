@@ -70,11 +70,16 @@ public class PlayerTwoControl : MonoBehaviour {
 			Debug.Log ("in");
 			Shake = true;
 			SkillTime2 = 0;
-			shadow = this.gameObject;
+			shadow.transform.position = transform.position;
+			shadow.transform.localRotation = transform.localRotation;
+			shadow.GetComponent<Rigidbody2D> ().velocity = rb2d.velocity;
+			shadow.GetComponent<Rigidbody2D> ().angularVelocity = rb2d.angularVelocity;
 		}
 		if (Shake) {
 			Debug.Log ("running");
-			transform.position = new Vector3(shadow.transform.position.x+Random.value-0.5f,shadow.transform.position.y+Random.value-0.5f,0);
+			transform.position = new Vector3(Mathf.Max(-9,Mathf.Min(shadow.transform.position.x+Random.value*2-1,9)),
+											 Mathf.Max(-4,Mathf.Min(shadow.transform.position.y+Random.value*2-1,4)),
+										     0);
 
 			SkillTime2 += Time.deltaTime;
 			if (SkillTime2 >= 1) {
@@ -82,7 +87,8 @@ public class PlayerTwoControl : MonoBehaviour {
 				Cooldown2 = 0;
 				this.transform.position = shadow.transform.position;
 				this.transform.localRotation = shadow.transform.localRotation;
-				this.rb2d = shadow.GetComponent<Rigidbody2D> ();
+				rb2d.velocity = shadow.GetComponent<Rigidbody2D> ().velocity;
+				rb2d.angularVelocity = shadow.GetComponent<Rigidbody2D> ().angularVelocity;
 			}
 		}
 
