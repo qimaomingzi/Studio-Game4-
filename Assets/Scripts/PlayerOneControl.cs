@@ -5,18 +5,23 @@ using UnityEngine;
 public class PlayerOneControl : MonoBehaviour {
 	Rigidbody2D[] rb;
 	SpriteRenderer[] sr;
-	Transform[] tr;
+	Transform tr;
+	GameObject P2;
 	public float MaxSpeed;
 	float Cooldown =  10;
+	float Cooldown2 = 8;
 	float SkillTime = 0;
+	float SkillTime2 =0;
 	bool Stretch = false;
+	bool Grow = false;
 	bool isLeft = true;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponentsInChildren<Rigidbody2D> ();
 		sr = GetComponentsInChildren<SpriteRenderer> ();
-		tr = GetComponentsInChildren<Transform> ();
+		P2 = GameObject.Find ("Player2");
+		tr = GameObject.Find ("Player2").GetComponent<Transform> ();
 		sr [1].color = Color.gray;
 	}
 	
@@ -62,7 +67,9 @@ public class PlayerOneControl : MonoBehaviour {
 		//P1 first skill stretch
 		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 10) {
 			Stretch = true;
+			Debug.Log (SkillTime);
 			SkillTime = 0;
+
 		}
 		if (Stretch) {
 			SkillTime += Time.deltaTime;
@@ -82,7 +89,25 @@ public class PlayerOneControl : MonoBehaviour {
 
 			}
 		}
+		//P1 second skill blow
+		if (Input.GetButtonDown ("P1Skill2") && Cooldown2 == 8) {
+			Grow = true;
+			SkillTime2 = 0;
+		}
+		if (Grow) {
+			SkillTime2 += Time.deltaTime;
+			if (SkillTime2 <= 1) {
+				tr.localScale = new Vector3(tr.localScale.x+Time.deltaTime*2,tr.localScale.y+ Time.deltaTime*2,1);
+			} else if (SkillTime2 >= 4 && SkillTime2 <6) {
+				tr.localScale = new Vector3(tr.localScale.x-Time.deltaTime,tr.localScale.y- Time.deltaTime,1);
+			} else if (SkillTime2 >= 6) {
+				Grow = false;
+				Cooldown2 = 0;
+				tr.localScale = Vector3.one/2;
+			}
+		}
 		Cooldown = Mathf.Min (10, Cooldown += Time.deltaTime);
+		Cooldown2 = Mathf.Min (8, Cooldown2 += Time.deltaTime);
 
 	}
 
