@@ -5,13 +5,18 @@ using UnityEngine;
 public class PlayerOneControl : MonoBehaviour {
 	Rigidbody2D[] rb;
 	SpriteRenderer[] sr;
+	Transform[] tr;
 	public float MaxSpeed;
+	float Cooldown =  10;
+	float SkillTime = 0;
+	bool Stretch = false;
 	bool isLeft = true;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponentsInChildren<Rigidbody2D> ();
 		sr = GetComponentsInChildren<SpriteRenderer> ();
+		tr = GetComponentsInChildren<Transform> ();
 		sr [1].color = Color.gray;
 	}
 	
@@ -54,6 +59,30 @@ public class PlayerOneControl : MonoBehaviour {
 			sr [1].color = Color.white;
 			rb [0].velocity *= 0.2f;
 		}
+		//P1 first skill stretch
+		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 10) {
+			Stretch = true;
+			SkillTime = 0;
+		}
+		if (Stretch) {
+			SkillTime += Time.deltaTime;
+			rb [0].drag = 6;
+			rb [1].drag = 6;
+			if (SkillTime <= 1) {
+				transform.localScale = new Vector3(1,transform.localScale.y+ Time.deltaTime,1);
+			} else if (SkillTime >= 3.5f && SkillTime <4) {
+				transform.localScale = new Vector3(1,transform.localScale.y- 2*Time.deltaTime,1);
+
+			} else if (SkillTime >= 4) {
+				Stretch = false;
+				Cooldown = 0;
+				transform.localScale = Vector3.one;
+				rb [0].drag = 3;
+				rb [1].drag = 3;
+
+			}
+		}
+		Cooldown = Mathf.Min (10, Cooldown += Time.deltaTime);
 
 	}
 
