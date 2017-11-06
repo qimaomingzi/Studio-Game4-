@@ -53,13 +53,14 @@ public class PlayerTwoControl : MonoBehaviour {
 			STR *= 3;
 		}
 		if (BulletTime) {
+			Cooldown = 0;
 			Time.timeScale = 0.3f;
 			Debug.Log (SkillTime);
 			SkillTime += Time.deltaTime;
 			if (SkillTime >= 1) {
 				Time.timeScale = 1;
 				BulletTime = false;
-				Cooldown = 0;
+
 				torque /= 3;
 				STR /= 3;
 			}
@@ -77,6 +78,7 @@ public class PlayerTwoControl : MonoBehaviour {
 		}
 		if (Shake) {
 			Debug.Log ("running");
+			Cooldown2 = 0;
 			transform.position = new Vector3(Mathf.Max(-9,Mathf.Min(shadow.transform.position.x+Random.value*2-1,9)),
 											 Mathf.Max(-4,Mathf.Min(shadow.transform.position.y+Random.value*2-1,4)),
 										     0);
@@ -84,7 +86,7 @@ public class PlayerTwoControl : MonoBehaviour {
 			SkillTime2 += Time.deltaTime;
 			if (SkillTime2 >= 1) {
 				Shake = false;
-				Cooldown2 = 0;
+
 				this.transform.position = shadow.transform.position;
 				this.transform.localRotation = shadow.transform.localRotation;
 				rb2d.velocity = shadow.GetComponent<Rigidbody2D> ().velocity;

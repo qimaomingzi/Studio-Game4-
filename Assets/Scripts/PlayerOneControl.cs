@@ -6,7 +6,7 @@ public class PlayerOneControl : MonoBehaviour {
 	Rigidbody2D[] rb;
 	SpriteRenderer[] sr;
 	Transform tr;
-	GameObject P2;
+	Transform trShadow;
 	public float MaxSpeed;
 	float Cooldown =  10;
 	float Cooldown2 = 8;
@@ -20,7 +20,7 @@ public class PlayerOneControl : MonoBehaviour {
 	void Start () {
 		rb = GetComponentsInChildren<Rigidbody2D> ();
 		sr = GetComponentsInChildren<SpriteRenderer> ();
-		P2 = GameObject.Find ("Player2");
+		trShadow = GameObject.Find ("Player2Shadow").GetComponent<Transform> ();
 		tr = GameObject.Find ("Player2").GetComponent<Transform> ();
 		sr [1].color = Color.gray;
 	}
@@ -72,6 +72,7 @@ public class PlayerOneControl : MonoBehaviour {
 
 		}
 		if (Stretch) {
+			Cooldown = 0;
 			SkillTime += Time.deltaTime;
 			rb [0].drag = 6;
 			rb [1].drag = 6;
@@ -82,7 +83,7 @@ public class PlayerOneControl : MonoBehaviour {
 
 			} else if (SkillTime >= 4) {
 				Stretch = false;
-				Cooldown = 0;
+
 				transform.localScale = Vector3.one;
 				rb [0].drag = 3;
 				rb [1].drag = 3;
@@ -95,15 +96,19 @@ public class PlayerOneControl : MonoBehaviour {
 			SkillTime2 = 0;
 		}
 		if (Grow) {
+			Cooldown2 = 0;
 			SkillTime2 += Time.deltaTime;
 			if (SkillTime2 <= 1) {
 				tr.localScale = new Vector3(tr.localScale.x+Time.deltaTime*2,tr.localScale.y+ Time.deltaTime*2,1);
+				trShadow.localScale = new Vector3(tr.localScale.x+Time.deltaTime*2,tr.localScale.y+ Time.deltaTime*2,1);
 			} else if (SkillTime2 >= 4 && SkillTime2 <6) {
 				tr.localScale = new Vector3(tr.localScale.x-Time.deltaTime,tr.localScale.y- Time.deltaTime,1);
+				trShadow.localScale = new Vector3(tr.localScale.x-Time.deltaTime,tr.localScale.y- Time.deltaTime,1);
 			} else if (SkillTime2 >= 6) {
 				Grow = false;
-				Cooldown2 = 0;
-				tr.localScale = Vector3.one/2;
+
+				tr.localScale = new Vector3(0.5f,0.5f,1);
+				trShadow.localScale = new Vector3(0.5f,0.5f,1);
 			}
 		}
 		Cooldown = Mathf.Min (10, Cooldown += Time.deltaTime);
