@@ -67,7 +67,7 @@ public class PlayerTwoControl : MonoBehaviour {
 		}
 
 		//Second Skill Shake ball
-		if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
+		/*if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
 			Debug.Log ("in");
 			Shake = true;
 			SkillTime2 = 0;
@@ -92,7 +92,7 @@ public class PlayerTwoControl : MonoBehaviour {
 				rb2d.velocity = shadow.GetComponent<Rigidbody2D> ().velocity;
 				rb2d.angularVelocity = shadow.GetComponent<Rigidbody2D> ().angularVelocity;
 			}
-		}
+		}*/
 
 		Cooldown = Mathf.Min (5, Cooldown += Time.deltaTime);
 		Cooldown2 = Mathf.Min (3, Cooldown2 += Time.deltaTime);
