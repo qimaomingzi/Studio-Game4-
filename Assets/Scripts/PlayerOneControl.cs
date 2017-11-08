@@ -20,6 +20,7 @@ public class PlayerOneControl : MonoBehaviour {
 	bool Grow = false;
 	bool canMove;
 	bool isVertical = false;
+	bool notRotating = true;
 
 	// Use this for initialization
 	void Start () {
@@ -68,17 +69,18 @@ public class PlayerOneControl : MonoBehaviour {
 				}
 			}
 		}
-		if (Input.GetKeyDown ("space")) {
+		if (Input.GetKeyDown ("space") && notRotating) {
 			direction = 'l';
 			canMove = false;
+			notRotating = false;
 			rb [0].velocity = Vector2.zero;
 			rb [1].velocity = Vector2.zero;
 			if (isVertical) {
-				t [1].position = new Vector3 (0, 4.5f, 0);
-				t [2].position = new Vector3 (0, -4.5f, 0);
+				t [1].position = new Vector3 (0, 4.8f, 0);
+				t [2].position = new Vector3 (0, -4.8f, 0);
 			} else {
-				t [1].position = new Vector3 (-4.5f,0, 0);
-				t [2].position = new Vector3 (4.5f, 0, 0);
+				t [1].position = new Vector3 (-4.8f,0, 0);
+				t [2].position = new Vector3 (4.8f, 0, 0);
 			}
 
 		}
@@ -92,6 +94,7 @@ public class PlayerOneControl : MonoBehaviour {
 				direction = 'n';
 				RotateAngle += 0.5f;
 				canMove = true;
+				notRotating = true;
 				isVertical = !isVertical;
 				if (isVertical) {
 					rb [0].constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
@@ -101,6 +104,7 @@ public class PlayerOneControl : MonoBehaviour {
 					rb [1].constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
 				}
 			}
+
 		}
 		//P1 first skill stretch
 		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 10) {
