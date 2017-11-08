@@ -13,6 +13,7 @@ public class PlayerTwoControl : MonoBehaviour {
 	float Cooldown2 = 3;
 	bool BulletTime = false;
 	bool Shake = false;
+	public GameObject P2Dupe;
 	GameObject shadow;
 	Vector3 CurrentPosition = Vector3.zero;
 	// Use this for initialization
@@ -20,6 +21,8 @@ public class PlayerTwoControl : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		CurrentPosition = transform.position;
 		shadow = GameObject.Find ("Player2Shadow");
+		torque = 100;
+		MaxSpeed = 10;
 	}
 
 	// Update is called once per frame
@@ -67,32 +70,32 @@ public class PlayerTwoControl : MonoBehaviour {
 		}
 
 		//Second Skill Shake ball
-		/*if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
+		if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
 			Debug.Log ("in");
 			Shake = true;
 			SkillTime2 = 0;
-			shadow.transform.position = transform.position;
-			shadow.transform.localRotation = transform.localRotation;
+			shadow = Instantiate (P2Dupe,new Vector2(Random.Range(-4,4),Random.Range(-4,4)),Quaternion.identity) as GameObject;
 			shadow.GetComponent<Rigidbody2D> ().velocity = rb2d.velocity;
 			shadow.GetComponent<Rigidbody2D> ().angularVelocity = rb2d.angularVelocity;
 		}
 		if (Shake) {
 			Debug.Log ("running");
 			Cooldown2 = 0;
-			transform.position = new Vector3(Mathf.Max(-9,Mathf.Min(shadow.transform.position.x+Random.value*2-1,9)),
-											 Mathf.Max(-4,Mathf.Min(shadow.transform.position.y+Random.value*2-1,4)),
-										     0);
 
 			SkillTime2 += Time.deltaTime;
-			if (SkillTime2 >= 1) {
+			if (SkillTime2 >= 5) {
 				Shake = false;
-
-				this.transform.position = shadow.transform.position;
-				this.transform.localRotation = shadow.transform.localRotation;
-				rb2d.velocity = shadow.GetComponent<Rigidbody2D> ().velocity;
-				rb2d.angularVelocity = shadow.GetComponent<Rigidbody2D> ().angularVelocity;
+				if (Random.value <= 0.5f) {
+					GameObject.Destroy (shadow);
+				} else {
+					this.transform.position = shadow.transform.position;
+					this.transform.localRotation = shadow.transform.localRotation;
+					rb2d.velocity = shadow.GetComponent<Rigidbody2D> ().velocity;
+					rb2d.angularVelocity = shadow.GetComponent<Rigidbody2D> ().angularVelocity;
+					GameObject.Destroy (shadow);
+				}
 			}
-		}*/
+		}
 
 		Cooldown = Mathf.Min (5, Cooldown += Time.deltaTime);
 		Cooldown2 = Mathf.Min (3, Cooldown2 += Time.deltaTime);
