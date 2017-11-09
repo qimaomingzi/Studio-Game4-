@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreControl : MonoBehaviour {
 	GameObject manager;
-	bool isHit = false;
+	public bool isHit = false;
 	// Use this for initialization
 	void Start () {
 		manager = GameObject.Find ("GameManager");
@@ -18,9 +18,9 @@ public class ScoreControl : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D colliderThatHitMe){
 		if (colliderThatHitMe.tag == "Player2") { //check to see if the colliding object had the tag 'Ball'
 			if (isHit == false) {
-				//manager.SendMessage ("WallHit");
 				isHit = true;
-				this.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 0.67f);
+				this.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 0.4f);
+				manager.SendMessage ("WallHit");
 			}
 		}
 	}
