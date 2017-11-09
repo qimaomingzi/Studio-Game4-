@@ -12,17 +12,17 @@ public class TimeControl : MonoBehaviour {
 		text = GetComponent<TextMesh> ();
 		manager = GameObject.Find ("GameManager");
 		ct = 45;
-		text.color = new Vector4(1,1,1,0.482f);
+		text.color = new Vector4(1,1,1,0.6f);
 	}
 
 	// Update is called once per frame
 	void Update () {
 		ct -= Time.deltaTime; 
 		text.text = ((int)ct).ToString ();
-		if (ct <= 6)
-			text.color = new Color(1,0f,0f,0.8f);
+		text.color = new Color(1,1,1,0.1f+0.7f*(ct/45));
 		if (ct <= 0) {
 			Time.timeScale = 0;
+
 		}
 	}
 }
