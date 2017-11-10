@@ -47,3 +47,6 @@ TagManager:
   - name: score
     uniqueID: 1833698591
     locked: 0
+  - name: skill
+    uniqueID: 1083430509
+    locked: 0

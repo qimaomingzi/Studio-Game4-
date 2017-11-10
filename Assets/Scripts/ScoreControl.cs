@@ -19,7 +19,7 @@ public class ScoreControl : MonoBehaviour {
 		if (colliderThatHitMe.tag == "Player2") { //check to see if the colliding object had the tag 'Ball'
 			if (isHit == false) {
 				isHit = true;
-				this.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 1);
+				this.GetComponent<SpriteRenderer> ().color = Color.gray;
 				manager.SendMessage ("WallHit");
 			}
 		}
