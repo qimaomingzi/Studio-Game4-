@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerOneControl : MonoBehaviour {
 	Rigidbody2D[] rb;
@@ -8,9 +9,11 @@ public class PlayerOneControl : MonoBehaviour {
 	Transform tr;
 	Transform trShadow;
 	Transform[] t;
+	public Text cd1;
+	public Text cd2;
 	public float MaxSpeed;
-	float Cooldown =  10;
-	float Cooldown2 = 8;
+	float Cooldown =  5;
+	float Cooldown2 = 5;
 	float SkillTime = 0;
 	float SkillTime2 =0;
 	float RotateTime = 0;
@@ -21,6 +24,8 @@ public class PlayerOneControl : MonoBehaviour {
 	bool canMove;
 	bool isVertical = false;
 	bool notRotating = true;
+	GameObject Skill1;
+	GameObject Skill2;
 
 	// Use this for initialization
 	void Start () {
@@ -30,8 +35,9 @@ public class PlayerOneControl : MonoBehaviour {
 		//trShadow = GameObject.Find ("Player2Shadow").GetComponent<Transform> ();
 		tr = GameObject.Find ("Player2").GetComponent<Transform> ();
 		canMove = true;
+		Skill1 = GameObject.Find ("Stretch");
+		Skill2 = GameObject.Find ("Grow");
 	}
-	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (canMove) {
@@ -107,10 +113,11 @@ public class PlayerOneControl : MonoBehaviour {
 
 		}
 		//P1 first skill stretch
-		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 10) {
+		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 5) {
 			Stretch = true;
 			Debug.Log (SkillTime);
 			SkillTime = 0;
+			Skill1.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 0.25f);
 
 		}
 		if (Stretch) {
@@ -133,9 +140,10 @@ public class PlayerOneControl : MonoBehaviour {
 			}
 		}
 		//P1 second skill blow
-		if (Input.GetButtonDown ("P1Skill2") && Cooldown2 == 8) {
+		if (Input.GetButtonDown ("P1Skill2") && Cooldown2 == 5) {
 			Grow = true;
 			SkillTime2 = 0;
+			Skill2.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 0.25f);
 		}
 		if (Grow) {
 			Cooldown2 = 0;
@@ -152,8 +160,16 @@ public class PlayerOneControl : MonoBehaviour {
 				//trShadow.localScale = new Vector3(0.5f,0.5f,1);
 			}
 		}
-		Cooldown = Mathf.Min (10, Cooldown += Time.deltaTime);
-		Cooldown2 = Mathf.Min (8, Cooldown2 += Time.deltaTime);
+		Cooldown = Mathf.Min (5, Cooldown += Time.deltaTime);
+		cd1.text = (5-(int)Cooldown).ToString();
+		Cooldown2 = Mathf.Min (5, Cooldown2 += Time.deltaTime);
+		cd2.text = (5-(int)Cooldown2).ToString();
+		if (Cooldown == 5) {
+			Skill1.GetComponent<SpriteRenderer> ().color = Color.white;
+		}
+		if (Cooldown2 == 5) {
+			Skill2.GetComponent<SpriteRenderer> ().color = Color.white;
+		}
 
 	}
 
