@@ -26,6 +26,7 @@ public class PlayerOneControl : MonoBehaviour {
 	bool notRotating = true;
 	GameObject Skill1;
 	GameObject Skill2;
+	AudioSource hit;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +38,7 @@ public class PlayerOneControl : MonoBehaviour {
 		canMove = true;
 		Skill1 = GameObject.Find ("Stretch");
 		Skill2 = GameObject.Find ("Grow");
+
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -112,6 +114,8 @@ public class PlayerOneControl : MonoBehaviour {
 			}
 
 		}
+
+
 		//P1 first skill stretch
 		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 5) {
 			Stretch = true;
