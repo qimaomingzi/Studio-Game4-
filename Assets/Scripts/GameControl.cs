@@ -49,4 +49,7 @@ public class GameControl : MonoBehaviour {
 	public void EnterGame(){
 		SceneManager.LoadScene ("StartScene");
 	}
+	public void Tutorial(){
+		SceneManager.LoadScene ("TutorialScene");
+	}
 }

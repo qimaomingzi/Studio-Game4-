@@ -15,7 +15,7 @@ public class OpenSceneBall : MonoBehaviour {
 	void Update () {
 		
 		if (Time.timeSinceLevelLoad% 5  < 1) {
-			rb.AddRelativeForce (Vector2.one * 200);
+			rb.AddRelativeForce (Vector2.one * 100);
 		}
 	}
 }
