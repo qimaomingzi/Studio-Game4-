@@ -46,4 +46,7 @@ public class GameControl : MonoBehaviour {
 	public void ResetGame(){
 		SceneManager.LoadScene ("OpenScene");
 	}
+	public void EnterGame(){
+		SceneManager.LoadScene ("StartScene");
+	}
 }
