@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 2
     m_SelectOnUp: {fileID: 1615514891}
     m_SelectOnDown: {fileID: 1615514891}
     m_SelectOnLeft: {fileID: 0}
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 224808695}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!4 &809455484
@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 2
     m_SelectOnUp: {fileID: 224808697}
     m_SelectOnDown: {fileID: 224808697}
     m_SelectOnLeft: {fileID: 0}
