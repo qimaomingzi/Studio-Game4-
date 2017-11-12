@@ -21,9 +21,11 @@ public class PlayerTwoControl : MonoBehaviour {
 	GameObject Skill1;
 	GameObject Skill2;
 	Vector3 CurrentPosition = Vector3.zero;
+	AudioSource dupeSound;
 	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D> ();
+		dupeSound = GameObject.Find ("Dupe").GetComponent<AudioSource> ();
 		CurrentPosition = transform.position;
 		Skill2 = GameObject.Find ("Dupe");
 		Skill1 = GameObject.Find ("BulletTime");
@@ -79,6 +81,7 @@ public class PlayerTwoControl : MonoBehaviour {
 		//Second Skill Shake ball
 		if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
 			Shake = true;
+			dupeSound.Play ();
 			SkillTime2 = 0;
 			shadow = Instantiate (P2Dupe,new Vector2(Random.Range(-4,4),Random.Range(-4,4)),Quaternion.identity) as GameObject;
 			shadow.transform.localScale = transform.localScale;

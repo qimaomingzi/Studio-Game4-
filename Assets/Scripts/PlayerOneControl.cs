@@ -26,7 +26,8 @@ public class PlayerOneControl : MonoBehaviour {
 	bool notRotating = true;
 	GameObject Skill1;
 	GameObject Skill2;
-	AudioSource hit;
+	AudioSource stretchSound;
+	AudioSource growSound;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +39,8 @@ public class PlayerOneControl : MonoBehaviour {
 		canMove = true;
 		Skill1 = GameObject.Find ("Stretch");
 		Skill2 = GameObject.Find ("Grow");
+		stretchSound = GameObject.Find("Stretch").GetComponent<AudioSource> ();
+		growSound = GameObject.Find ("Grow").GetComponent<AudioSource> ();
 
 	}
 	// Update is called once per frame
@@ -119,6 +122,7 @@ public class PlayerOneControl : MonoBehaviour {
 		//P1 first skill stretch
 		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 5) {
 			Stretch = true;
+			stretchSound.Play ();
 			Debug.Log (SkillTime);
 			SkillTime = 0;
 			Skill1.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 0.25f);
@@ -146,6 +150,7 @@ public class PlayerOneControl : MonoBehaviour {
 		//P1 second skill blow
 		if (Input.GetButtonDown ("P1Skill2") && Cooldown2 == 5) {
 			Grow = true;
+			growSound.Play ();
 			SkillTime2 = 0;
 			Skill2.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 0.25f);
 		}
