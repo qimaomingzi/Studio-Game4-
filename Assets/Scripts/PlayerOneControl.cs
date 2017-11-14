@@ -12,8 +12,8 @@ public class PlayerOneControl : MonoBehaviour {
 	public Text cd1;
 	public Text cd2;
 	public float MaxSpeed;
-	float Cooldown =  5;
-	float Cooldown2 = 5;
+	float Cooldown =  6;
+	float Cooldown2 = 10;
 	float SkillTime = 0;
 	float SkillTime2 =0;
 	float RotateTime = 0;
@@ -120,7 +120,7 @@ public class PlayerOneControl : MonoBehaviour {
 
 
 		//P1 first skill stretch
-		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 5) {
+		if (Input.GetButtonDown ("P1Skill1") && Cooldown == 6) {
 			Stretch = true;
 			stretchSound.Play ();
 			Debug.Log (SkillTime);
@@ -134,9 +134,9 @@ public class PlayerOneControl : MonoBehaviour {
 			rb [0].drag = 6;
 			rb [1].drag = 6;
 			if (SkillTime <= 0.5f) {
-				transform.localScale = new Vector3(1,transform.localScale.y+ Time.deltaTime,1);
+				transform.localScale = new Vector3(1,transform.localScale.y+ Time.deltaTime*1.6f,1);
 			} else if (SkillTime >= 3.25f && SkillTime <3.5f) {
-				transform.localScale = new Vector3(1,transform.localScale.y- 2*Time.deltaTime,1);
+				transform.localScale = new Vector3(1,transform.localScale.y- 2*Time.deltaTime*1.6f,1);
 
 			} else if (SkillTime >= 3.5f) {
 				Stretch = false;
@@ -148,7 +148,7 @@ public class PlayerOneControl : MonoBehaviour {
 			}
 		}
 		//P1 second skill blow
-		if (Input.GetButtonDown ("P1Skill2") && Cooldown2 == 5) {
+		if (Input.GetButtonDown ("P1Skill2") && Cooldown2 == 10) {
 			Grow = true;
 			growSound.Play ();
 			SkillTime2 = 0;
@@ -169,14 +169,14 @@ public class PlayerOneControl : MonoBehaviour {
 				//trShadow.localScale = new Vector3(0.5f,0.5f,1);
 			}
 		}
-		Cooldown = Mathf.Min (5, Cooldown += Time.deltaTime);
-		cd1.text = (5-(int)Cooldown).ToString();
-		Cooldown2 = Mathf.Min (5, Cooldown2 += Time.deltaTime);
-		cd2.text = (5-(int)Cooldown2).ToString();
+		Cooldown = Mathf.Min (6, Cooldown += Time.deltaTime);
+		cd1.text = (6-(int)Cooldown).ToString();
+		Cooldown2 = Mathf.Min (10, Cooldown2 += Time.deltaTime);
+		cd2.text = (10-(int)Cooldown2).ToString();
 		if (Cooldown == 5) {
 			Skill1.GetComponent<SpriteRenderer> ().color = Color.white;
 		}
-		if (Cooldown2 == 5) {
+		if (Cooldown2 == 10) {
 			Skill2.GetComponent<SpriteRenderer> ().color = Color.white;
 		}
 

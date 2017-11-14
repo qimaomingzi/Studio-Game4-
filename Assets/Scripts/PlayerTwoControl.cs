@@ -12,8 +12,8 @@ public class PlayerTwoControl : MonoBehaviour {
 	int STR = 100;
 	float SkillTime = 0;
 	float SkillTime2 = 0;
-	float Cooldown = 5;
-	float Cooldown2 = 3;
+	float Cooldown = 8;
+	float Cooldown2 = 20;
 	bool BulletTime = false;
 	bool Shake = false;
 	public GameObject P2Dupe;
@@ -57,7 +57,7 @@ public class PlayerTwoControl : MonoBehaviour {
 		}
 
 		//First Skill Bullet time
-		if (Input.GetButtonDown ("P2Skill1") && Cooldown == 5) {
+		if (Input.GetButtonDown ("P2Skill1") && Cooldown == 8) {
 			BulletTime = true;
 			SkillTime = 0;
 			torque *= 3;
@@ -69,7 +69,7 @@ public class PlayerTwoControl : MonoBehaviour {
 			Time.timeScale = 0.3f;
 			Debug.Log (SkillTime);
 			SkillTime += Time.deltaTime;
-			if (SkillTime >= 1) {
+			if (SkillTime >= 1.5f) {
 				Time.timeScale = 1;
 				BulletTime = false;
 
@@ -79,7 +79,7 @@ public class PlayerTwoControl : MonoBehaviour {
 		}
 
 		//Second Skill Shake ball
-		if (Input.GetKeyDown ("k") && Cooldown2 == 3) {
+		if (Input.GetKeyDown ("k") && Cooldown2 == 20) {
 			Shake = true;
 			dupeSound.Play ();
 			SkillTime2 = 0;
@@ -107,17 +107,17 @@ public class PlayerTwoControl : MonoBehaviour {
 			}
 		}
 
-		if (Cooldown == 5) {
+		if (Cooldown == 8) {
 			Skill1.GetComponent<SpriteRenderer> ().color = Color.white;
 		}
-		if (Cooldown2 == 3) {
+		if (Cooldown2 == 20) {
 			Skill2.GetComponent<SpriteRenderer> ().color = Color.white;
 		}
 
-		Cooldown = Mathf.Min (5, Cooldown += Time.deltaTime);
-		cd1.text = (5-(int)Cooldown).ToString();
-		Cooldown2 = Mathf.Min (3, Cooldown2 += Time.deltaTime);
-		cd2.text = (3-(int)Cooldown2).ToString();
+		Cooldown = Mathf.Min (8, Cooldown += Time.deltaTime);
+		cd1.text = (8-(int)Cooldown).ToString();
+		Cooldown2 = Mathf.Min (20, Cooldown2 += Time.deltaTime);
+		cd2.text = (20-(int)Cooldown2).ToString();
 	}
 
 }

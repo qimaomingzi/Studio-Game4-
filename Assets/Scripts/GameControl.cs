@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour {
 	public Text score;
-	int count;
+	public int count;
 	GameObject scoreZone1;
 	GameObject scoreZone2;
 	GameObject scoreZone3;

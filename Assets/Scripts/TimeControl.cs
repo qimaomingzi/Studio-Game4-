@@ -9,9 +9,10 @@ public class TimeControl : MonoBehaviour {
 	TextMesh text;
 	GameObject manager;
 	RectTransform button;
+	int score;
 	// Use this for initialization
 	void Start () {
-		//a = GameObject.Find().
+		Time.timeScale = 1;
 		text = GetComponent<TextMesh> ();
 		manager = GameObject.Find ("GameManager");
 		ct = 60;
@@ -25,11 +26,16 @@ public class TimeControl : MonoBehaviour {
 		text.text = ((int)ct).ToString ();
 		text.color = new Color(1,1,1,0.1f+0.7f*(ct/45));
 		if (ct <= 0) {
+			score = GameObject.Find ("GameManager").GetComponent<GameControl>().count;
 			button.position = new Vector3 (330, 300, 0);
 			text.transform.position = new Vector3 (0, 2, 0);
 			text.color = Color.white;
-			text.text = "GAME OVER";
-			text.fontSize = 15;
+			if (score >= 20) {
+				text.text = "PLAYER 1 WINS";
+			} else if(score < 20) {
+				text.text = "PLAYER 2 WINS";
+			}
+			text.fontSize = 12;
 			Time.timeScale = 0;
 
 		}

@@ -1149,13 +1149,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1407511193}
   - component: {fileID: 1407511192}
-  - component: {fileID: 1407511191}
   - component: {fileID: 1407511190}
   - component: {fileID: 1407511189}
   - component: {fileID: 1407511194}
   - component: {fileID: 1407511195}
   m_Layer: 0
-  m_Name: ball
+  m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1196,17 +1195,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.76
---- !u!114 &1407511191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1407511188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14ca68dedce994cac913b6ae4df90246, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1407511192
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1518,6 +1506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 0}
+  count: 0
 --- !u!114 &1716010614
 MonoBehaviour:
   m_ObjectHideFlags: 0
